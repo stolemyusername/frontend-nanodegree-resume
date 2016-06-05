@@ -1,0 +1,21 @@
+function nameChanger(oldName) {
+    var finalName = '';
+    // Your code goes here!
+	debugger;
+	var space = false;
+    for (var i = 0; i < oldName.length; i++){
+    	if (i === 0){
+    		finalName += oldName[i].toUpperCase();
+    	} else if (oldName[i] === ' '){
+    		space = true;
+    		finalName += ' ';
+    	} else if (space === false){
+    		finalName += oldName[i].toLowerCase();
+    	} else {
+    		finalName += oldName[i].toUpperCase();
+    	}
+    }
+    
+    // Don't delete this line!
+    return finalName;
+};
