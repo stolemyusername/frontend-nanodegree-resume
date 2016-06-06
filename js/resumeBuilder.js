@@ -49,14 +49,14 @@ var education = {
         "name": "Monash University",
         "location": "Melbourne, Australia",
         "degree": "Bachelor of Commerce",
-        "majors": ["Finance", "Economics"],
+        "major": "Finance",
         "dates": "Dec 2013",
         "url": "www.study.monash"
     }, {
         "name": "Vermont Secondary College",
         "location": "Melbourne, Australia",
         "degree": "VCE",
-        "majors": ["Physics", "Economics"],
+        "major": "Economics",
         "dates": "Dec 2010",
         "url": "www.vermontsc.vic.edu.au/"
     }],
@@ -84,32 +84,35 @@ var projects = {
         "description": "Data Analyst"
     }]
 }
-	
+
 //Populate the Name and role
-	$("#header").prepend(HTMLheaderRole.replace("%data%",bio.role))
-	$("#header").prepend(HTMLheaderName.replace("%data%",bio.name))
+bio.display = function() {
+    $("#header").prepend(HTMLheaderRole.replace("%data%", bio.role))
+    $("#header").prepend(HTMLheaderName.replace("%data%", bio.name))
 
-//Populate the Bio Information
-	for (info in bio.contacts){
-		var formatted = HTMLcontactGeneric.replace("%data%",bio.contacts[info])
-		formatted = formatted.replace("%contact%",info)
-		$("#topContacts").append(formatted)
-	}
-	$("#header").append(HTMLbioPic.replace("%data%",bio.biopic))
-	$("#header").append(HTMLwelcomeMsg.replace("%data%",bio.welcomeMsg))
+    //Populate the Bio Information
+    for (info in bio.contacts) {
+        var formatted = HTMLcontactGeneric.replace("%data%", bio.contacts[info])
+        formatted = formatted.replace("%contact%", info)
+        $("#topContacts").append(formatted)
+    }
+    $("#header").append(HTMLbioPic.replace("%data%", bio.biopic))
+    $("#header").append(HTMLwelcomeMsg.replace("%data%", bio.welcomeMsg))
 
 
-//Populate the skills
-if (bio.skills.length != 0) {
-    $("#header").append(HTMLskillsStart)
-    for (skill in bio.skills) {
-    var formattedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
-    $("#skills").append(formattedSkill)
-	}
+    //Populate the skills
+    if (bio.skills.length != 0) {
+        $("#header").append(HTMLskillsStart)
+        for (skill in bio.skills) {
+            var formattedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
+            $("#skills").append(formattedSkill)
+        }
+    }
 }
 
+
 //Populate the job history
-function displayWork() {
+work.display = function(){
     for (job in work.jobs) {
         $("#workExperience").append(HTMLworkStart)
         var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
@@ -128,26 +131,53 @@ function displayWork() {
     }
 }
 
-displayWork();
+
 
 //Populate the projects
 projects.display = function() {
-	console.log("enter")
-	for (project in projects.projects){
-		$("#projects").append(HTMLprojectStart);
+    console.log("enter")
+    for (project in projects.projects) {
+        $("#projects").append(HTMLprojectStart);
 
-		var formattedTitle = HTMLprojectTitle.replace("%data%",projects.projects[project].title);
-		$(".project-entry:last").append(formattedTitle);
+        var formattedTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
+        $(".project-entry:last").append(formattedTitle);
 
-		var formattedDates = HTMLprojectDates.replace("%data%",projects.projects[project].dates);
-		$(".project-entry:last").append(formattedDates);
+        var formattedDates = HTMLprojectDates.replace("%data%", projects.projects[project].dates);
+        $(".project-entry:last").append(formattedDates);
 
-		var formattedDescription = HTMLprojectDescription.replace("%data%",projects.projects[project].description);
-		$(".project-entry:last").append(formattedDescription);
-	}
+        var formattedDescription = HTMLprojectDescription.replace("%data%", projects.projects[project].description);
+        $(".project-entry:last").append(formattedDescription);
+    }
 }
 
-projects.display()
+//Populates the Education section
+education.display = function() {
 
-//Populate the map of locations that I've lived in and worked in
+    $("#education").append(HTMLschoolStart)
+
+    for (school in education.schools) {
+
+        var formattedName = HTMLschoolName.replace("%data%", education.schools[school].name);
+        $(".education-entry:last").append(formattedName)
+
+        var formattedDates = HTMLschoolDates.replace("%data%", education.schools[school].dates);
+        $(".education-entry:last").append(formattedDates)
+
+        var formattedDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
+        $(".education-entry:last").append(formattedDegree)
+
+        var formattedLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
+        $(".education-entry:last").append(formattedLocation)
+
+        var formattedMajor = HTMLschoolMajor.replace("%data%", education.schools[school].major);
+        $(".education-entry:last").append(formattedMajor)
+    }
+}
+
+bio.display();
+work.display();
+projects.display();
+education.display();
+
+    //Populate the map of locations that I've lived in and worked in
 $("#mapDiv").append(googleMap);
