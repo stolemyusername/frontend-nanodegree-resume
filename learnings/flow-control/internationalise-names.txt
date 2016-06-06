@@ -1,0 +1,18 @@
+/* This function takes in an input string which is in the format "firstname lastname" and returns it as a string in the format "Firstname LASTNAME" */
+function inName(name) {
+    var newName = '';
+    var space = false;
+    for (var i = 0; i < name.length; i++) {
+        if (i === 0) {
+            newName += name[i].toUpperCase();
+        } else if (name[i] === " ") {
+            space = true;
+            newName += " ";
+        } else if (space === false) {
+            newName += name[i].toLowerCase();
+        } else {
+            newName += name[i].toUpperCase();
+        }
+    }
+    return newName;
+}
