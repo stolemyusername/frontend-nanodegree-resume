@@ -1,0 +1,28 @@
+function getRelationship(x, y) {
+    // Your code goes here!
+    var xType = typeof(x);
+    var yType = typeof(y);
+    if ((xType != 'number') && (yType != 'number')){
+        return "Can't compare relationships because " + xType + " and " + xType + "are not numbers.";
+    } else if (xType != 'number') {
+        return "Can't compare relationships because " + xType + " is not a number";
+    } else if (yType != 'number') {
+        return "Can't compare relationships because " + yType + " is not a number";
+    } else if (x > y) {
+        return ">";
+    } else if (x < y) {
+       return "<";
+    } else {
+        return "=";
+    }
+}
+
+// Try logging these functions to test your code!
+console.log(getRelationship(1,4));
+console.log(getRelationship(1,1));
+console.log(getRelationship("that",2));
+console.log(getRelationship("this"," something else"));
+console.log(getRelationship(3));
+console.log(getRelationship("hi"));
+console.log(getRelationship(NaN));
+console.log(getRelationship(NaN, undefined));

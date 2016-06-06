@@ -1,0 +1,41 @@
+var moonWalkers = [
+  "Neil Armstrong",
+  "Buzz Aldrin",
+  "Pete Conrad",
+  "Alan Bean",
+  "Alan Shepard",
+  "Edgar Mitchell",
+  "David Scott",
+  "James Irwin",
+  "John Young",
+  "Charles Duke",
+  "Eugene Cernan",
+  "Harrison Schmitt"
+];
+
+function alphabetizer(names) {
+    // Split the names into an array of first and last names
+    var moonWalkersSplit = [];
+    for (walker in moonWalkers){
+    	var splitNames = moonWalkers[walker].split(" ");
+    	moonWalkersSplit.push(splitNames);
+    	
+    }
+    // Combine the first and last names so that it is now in the format of
+    // last + " " + first
+    var newWalkers = [];
+    for (walker in moonWalkersSplit){
+    	var lastFirstWalker = moonWalkersSplit[walker][1] + " " + moonWalkersSplit[walker][0];
+    	newWalkers.push(lastFirstWalker);
+    }
+    
+    //Sort the new array in alphabetical order
+    newWalkers = newWalkers.sort();
+    
+    return newWalkers;
+    
+    
+}
+
+// Try logging your results to test your code!
+console.log(alphabetizer(moonWalkers));
